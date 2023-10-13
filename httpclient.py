@@ -138,7 +138,7 @@ class HTTPClient(object):
         self.connect(host, port)
 
         # Send the request
-        self.sendall(f'POST {path} HTTP/1.1\r\nHost: {host}\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: {len(form_data)}\r\nConnection: Close\r\n\r\n{form_data}')
+        self.sendall(f'POST {path} HTTP/1.1\r\nHost: {host}\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: {len(form_data.encode("utf-8"))}\r\nConnection: Close\r\n\r\n{form_data}')
         # self.sendall("POST " + path + " HTTP/1.1\r\nHost: " + host + "\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: " + str(len(form_data)) + "\r\n Connection: Close \r\n\r\n" + form_data) # For some reason this doesnt work???
 
         content = self.recvall(self.socket)
